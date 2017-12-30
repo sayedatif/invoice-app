@@ -26,3 +26,32 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.login-form {
+  max-width: 400px;
+}
+
+.login-form-button {
+  width: 100%;
+  background-color: #ff0066;
+  color: #fff;
+  font-weight: 500;
+  height: 45px;
+}
+
+.login-form-button:hover {
+  background-color: #fff;
+  color: #ff0066;
+  border-color: #ff0066;
+}
+
+.input-style {
+  height: 45px;
+}
+
+.logo {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
