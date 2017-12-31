@@ -45,6 +45,42 @@
   border-color: #ff0066;
 }
 
+.social-button {
+  width: 100%;
+  height: 40px;
+  color: #fff;
+}
+
+.google-button {
+  background-color: #dd4b39;
+}
+
+.google-button:hover {
+  background-color: #fff;
+  color: #dd4b39;
+  border-color: #dd4b39;
+}
+
+.twitter-button {
+  background-color: #55acee;
+}
+
+.twitter-button:hover {
+  background-color: #fff;
+  color: #55acee;
+  border-color: #55acee;
+}
+
+.facebook-button {
+  background-color: #3b5998;
+}
+
+.facebook-button:hover {
+  background-color: #fff;
+  color: #3b5998;
+  border-color: #3b5998;
+}
+
 .input-style {
   height: 45px;
 }
@@ -54,4 +90,15 @@
   font-size: 20px;
   font-weight: 500;
   text-transform: uppercase;
+}
+
+.ant-divider-horizontal.ant-divider-with-text.divider {
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  max-height: 40px;
+  width: 40px;
+  margin: 0px 15px;
 }

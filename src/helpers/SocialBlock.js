@@ -1,0 +1,65 @@
+import React from 'react';
+import { Row, Col, Button, message } from 'antd';
+import { auth, googleProvider, facebookProvider, twitterProvider } from '../firebase.js';
+import { setToken } from '../utils/AuthService';
+
+
+class SocialBlock extends React.Component {
+
+  googleLogin = () => {
+    auth.signInWithPopup(googleProvider).then(result => {
+      console.log('result', result);
+      setToken(result.credential.accessToken);
+    }).catch(err => {
+      if (err) {
+        message.error('Error occured while logging using google');
+      }
+    })
+  }
+
+  facebookLogin = () => {
+    auth.signInWithPopup(facebookProvider).then(result => {
+      console.log('result', result);
+      setToken(result.credential.accessToken);
+    }).catch(err => {
+      if (err) {
+        message.error('Error occured while logging using facebook');
+      }
+    })
+  }
+
+  twitterLogin = () => {
+    auth.signInWithPopup(twitterProvider).then(result => {
+      console.log('result', result);
+      setToken(result.credential.accessToken);
+    }).catch(err => {
+      if (err) {
+        message.error('Error occured while logging using twitter');
+      }
+    })
+  }
+
+  render() {
+    return (
+      <Row style={{ minHeight: 40, display: 'flex'}}>
+        <Col span={8}>
+          <Button className="social-button facebook-button" icon="facebook" onClick={this.facebookLogin}>
+            Facebook
+          </Button>
+        </Col>
+        <Col span={8}>
+          <Button className="social-button google-button" icon="google" onClick={this.googleLogin}>
+            Google
+          </Button>
+        </Col>
+        <Col span={8}>
+          <Button className="social-button twitter-button" icon="twitter" onClick={this.twitterLogin}>
+            Twitter
+          </Button>
+        </Col>
+      </Row>
+    )
+  }
+}
+
+export default SocialBlock;
