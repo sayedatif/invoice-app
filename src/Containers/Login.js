@@ -1,12 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Divider } from 'antd'
+import { Form, Divider, message } from 'antd'
 import { Redirect } from 'react-router-dom';
 import LoginForm from '../Components/LoginForm';
 import { isLoggedIn } from '../utils/AuthService';
 import SocialBlock from '../helpers/SocialBlock'
+import { actions as invoiceAction } from '../reducers/invoiceReducer';
+import { setToken } from '../utils/AuthService';
 
 class Login extends React.Component {
+
+  getUserDetail = (user) => {
+    return {
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      phoneNumber: user.phoneNumber,
+      refreshToken: user.refreshToken,
+      uniqueKey: user.ca.a
+    }
+  }
+
+  processUserData = (result, type) => {
+    const token = type === 'social' ? result.user.pa : result.pa
+    const user = this.getUserDetail(result.user || result);
+    setToken(token);
+    this.props.setUser(user);
+    message.success(`Successfully logged in as ${user.displayName ? user.displayName : user.email}`);
+  }
 
   render() {
     if(isLoggedIn() && this.props.userLoggedIn) {
@@ -19,9 +40,9 @@ class Login extends React.Component {
 
     return (
       <div style={{ minWidth: 400 }}>
-        <AuthForm />
+        <AuthForm processDetail={(data, type) => this.processUserData(data, type)} />
         <Divider className="divider">OR</Divider>
-        <SocialBlock></SocialBlock>
+        <SocialBlock processDetail={(data, type) => this.processUserData(data, type)} />
       </div>
     )
   }
@@ -31,4 +52,8 @@ const mapStateToProps = state => ({
   userLoggedIn: state.invoice.userLoggedIn
 })
 
-export default connect(mapStateToProps, null)(Login);
+const mapDispatchToProps = dispatch => ({
+  setUser: (data) => dispatch(invoiceAction.setUser(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

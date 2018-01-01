@@ -1,34 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Row, Col, Button, message } from 'antd';
 import { auth, googleProvider, facebookProvider, twitterProvider } from '../firebase.js';
-import { setToken } from '../utils/AuthService';
-import { actions as invoiceAction } from '../reducers/invoiceReducer';
 
 class SocialBlock extends React.Component {
-
-  getUserDetail = (user) => {
-    return {
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      phoneNumber: user.phoneNumber,
-      refreshToken: user.refreshToken,
-      uniqueKey: user.ca.a
-    }
-  }
-
-  processUserData = (result) => {
-    setToken(result.credential.accessToken);
-    const user = this.getUserDetail(result.user);
-    this.props.setUser(user);
-    message.success(`Successfully logged in as ${user.displayName}`);
-  }
 
   googleLogin = () => {
     auth.signInWithPopup(googleProvider).then(result => {
       console.log('result', result);
-      this.processUserData(result);
+      this.props.processDetail(result, 'social');
     }).catch(err => {
       if (err) {
         message.error(err.message);
@@ -39,7 +18,7 @@ class SocialBlock extends React.Component {
   facebookLogin = () => {
     auth.signInWithPopup(facebookProvider).then(result => {
       console.log('result', result);
-      this.processUserData(result);
+      this.props.processDetail(result, 'social');
     }).catch(err => {
       if (err) {
         message.error(err.message);
@@ -50,7 +29,7 @@ class SocialBlock extends React.Component {
   twitterLogin = () => {
     auth.signInWithPopup(twitterProvider).then(result => {
       console.log('result', result);
-      this.processUserData(result);
+      this.props.processDetail(result, 'social');
     }).catch(err => {
       if (err) {
         message.error(err.message);
@@ -81,12 +60,4 @@ class SocialBlock extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.invoice.user
-})
-
-const mapDispatchToProps = dispatch => ({
-  setUser: (data) => dispatch(invoiceAction.setUser(data))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SocialBlock);
+export default SocialBlock;

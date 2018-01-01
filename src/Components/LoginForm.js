@@ -24,8 +24,10 @@ class LoginForm extends React.Component {
   authenticate = () => {
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        auth.signInWithEmailAndPassword(values.email, values.password).catch((err) => {
+        auth.signInWithEmailAndPassword(values.email, values.password).then(result => {
+          console.log('result', result);
+          this.props.processDetail(result, 'form');
+        }).catch((err) => {
           console.log(err);
           message.error(err.message);
         })

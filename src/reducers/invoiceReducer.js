@@ -3,10 +3,6 @@
  */
 export const INITIAL = 'app/invoiceReducer/INITIAL'
 export const SET_USER = 'app/invoiceReducer/SET_USER'
-// export const types = {
-//   INITIAL: 'app/invoiceReducer/INITIAL',
-//   ADD_USER: 'app/invoiceReducer/ADD_USER'
-// };
 
 /**
  * initialState
