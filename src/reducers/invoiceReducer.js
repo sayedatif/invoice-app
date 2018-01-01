@@ -2,7 +2,7 @@
  * action types
  */
 export const INITIAL = 'app/invoiceReducer/INITIAL'
-export const ADD_USER = 'app/invoiceReducer/ADD_USER'
+export const SET_USER = 'app/invoiceReducer/SET_USER'
 // export const types = {
 //   INITIAL: 'app/invoiceReducer/INITIAL',
 //   ADD_USER: 'app/invoiceReducer/ADD_USER'
@@ -13,13 +13,16 @@ export const ADD_USER = 'app/invoiceReducer/ADD_USER'
  */
 
 export const initialState = {
-
+  user: null,
+  userLoggedIn: false,
 }
 
 export default function invoiceReducer(state = initialState, action) {
   switch(action.type) {
     case INITIAL:
       return initialState;
+    case SET_USER:
+      return {...state, user: action.data, userLoggedIn: true}
     default:
       return state
   }
@@ -30,5 +33,6 @@ export default function invoiceReducer(state = initialState, action) {
  */
 
 export const actions = {
-  init: () => ({ type: INITIAL })
+  init: () => ({ type: INITIAL }),
+  setUser: (data) => ({ type: SET_USER, data })
 }

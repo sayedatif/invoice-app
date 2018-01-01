@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { isLoggedIn } from '../utils/AuthService';
 
 class Home extends React.Component {
   render() {
-    if(!isLoggedIn()) {
+    if(!isLoggedIn() && !this.props.userLoggedIn) {
       return (
         <Redirect to="/login" />
       )
@@ -18,4 +19,8 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  userLoggedIn: state.invoice.userLoggedIn
+})
+
+export default connect(mapStateToProps, null)(Home);

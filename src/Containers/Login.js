@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Divider } from 'antd'
 import { Redirect } from 'react-router-dom';
 import LoginForm from '../Components/LoginForm';
@@ -8,7 +9,7 @@ import SocialBlock from '../helpers/SocialBlock'
 class Login extends React.Component {
 
   render() {
-    if(isLoggedIn()) {
+    if(isLoggedIn() && this.props.userLoggedIn) {
       return (
         <Redirect to="/" />
       )
@@ -26,4 +27,8 @@ class Login extends React.Component {
   }
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  userLoggedIn: state.invoice.userLoggedIn
+})
+
+export default connect(mapStateToProps, null)(Login);
