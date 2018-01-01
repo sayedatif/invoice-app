@@ -106,3 +106,10 @@
   width: 40px;
   margin: 0px 15px;
 }
+
+.header-style {
+  background-color: #ff0066;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

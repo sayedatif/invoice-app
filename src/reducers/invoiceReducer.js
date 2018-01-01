@@ -3,6 +3,7 @@
  */
 export const INITIAL = 'app/invoiceReducer/INITIAL'
 export const SET_USER = 'app/invoiceReducer/SET_USER'
+export const REMOVE_USER = 'app/invoiceReducer/REMOVE_USER'
 
 /**
  * initialState
@@ -19,6 +20,8 @@ export default function invoiceReducer(state = initialState, action) {
       return initialState;
     case SET_USER:
       return {...state, user: action.data, userLoggedIn: true}
+    case REMOVE_USER:
+      return {...state, user: null, userLoggedIn: false}
     default:
       return state
   }
@@ -30,5 +33,6 @@ export default function invoiceReducer(state = initialState, action) {
 
 export const actions = {
   init: () => ({ type: INITIAL }),
-  setUser: (data) => ({ type: SET_USER, data })
+  setUser: (data) => ({ type: SET_USER, data }),
+  removeUser: () => ({ type: REMOVE_USER })
 }

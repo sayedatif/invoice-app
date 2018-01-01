@@ -11,10 +11,11 @@ import { setToken } from '../utils/AuthService';
 class Login extends React.Component {
 
   getUserDetail = (user) => {
+    const photo = user.photoURL || 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg';
     return {
       displayName: user.displayName,
       email: user.email,
-      photoURL: user.photoURL,
+      photoURL: photo,
       phoneNumber: user.phoneNumber,
       refreshToken: user.refreshToken,
       uniqueKey: user.ca.a
