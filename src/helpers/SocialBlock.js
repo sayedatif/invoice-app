@@ -12,7 +12,7 @@ class SocialBlock extends React.Component {
       setToken(result.credential.accessToken);
     }).catch(err => {
       if (err) {
-        message.error('Error occured while logging using google');
+        message.error(err.message);
       }
     })
   }
@@ -23,7 +23,7 @@ class SocialBlock extends React.Component {
       setToken(result.credential.accessToken);
     }).catch(err => {
       if (err) {
-        message.error('Error occured while logging using facebook');
+        message.error(err.message);
       }
     })
   }
@@ -34,7 +34,7 @@ class SocialBlock extends React.Component {
       setToken(result.credential.accessToken);
     }).catch(err => {
       if (err) {
-        message.error('Error occured while logging using twitter');
+        message.error(err.message);
       }
     })
   }
