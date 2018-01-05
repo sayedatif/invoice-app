@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Icon, Input, Button, message } from 'antd'
+import { Form, Icon, Input, Button, message, Divider } from 'antd'
+import { withRouter } from 'react-router-dom'
 import { auth } from '../firebase.js';
 const FormItem = Form.Item;
 
@@ -35,6 +36,10 @@ class LoginForm extends React.Component {
     });
   }
 
+  goToRegister = () => {
+    this.props.history.push('/register');
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
 
@@ -47,6 +52,7 @@ class LoginForm extends React.Component {
             <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 name="email"
                 onChange={this.handleChange}
+                onPressEnter={this.authenticate}
                 placeholder="Email"
                 className="input-style" />
           )}
@@ -58,20 +64,32 @@ class LoginForm extends React.Component {
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 name="password"
                 onChange={this.handleChange}
+                onPressEnter={this.authenticate}
                 type="password"
                 placeholder="Password"
                 className="input-style" />
           )}
         </FormItem>
         <FormItem>
-          <Button type="dashed" onClick={this.authenticate} className="login-form-button">
-            Sign in
-          </Button>
-          <a className="login-form-forgot" href="">Forgot password ?</a>
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+            <a style={{color: 'rgba(0, 0, 0, 0.65)'}} href="">Forgot password</a>
+            <Button type="dashed" onClick={this.authenticate} className="login-form-button">
+              Sign in <Icon type="arrow-right" />
+            </Button>
+          </div>
+        </FormItem>
+        <Divider></Divider>
+        <FormItem>
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+            <p>Need an account ?</p>
+            <Button type="dashed" onClick={this.goToRegister} className="register-button">
+              Register
+            </Button>
+          </div>
         </FormItem>
       </Form>
     )
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
