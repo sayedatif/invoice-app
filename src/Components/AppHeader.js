@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { Layout, Avatar, Dropdown, Menu, message, Icon } from 'antd';
 import { clearToken } from '../utils/AuthService';
@@ -26,6 +27,10 @@ class AppHeader extends React.Component{
     }
   }
 
+  goToHome = () => {
+    this.props.history.push('/')
+  }
+
   render() {
 
     const menu = this.props.user && (
@@ -37,7 +42,7 @@ class AppHeader extends React.Component{
 
     return (
       <Header className="header-style">
-        <div className="logo">
+        <div className="logo" onClick={this.goToHome}>
           <i>Invoice <Icon type="profile" /></i>
         </div>
         {this.props.user && this.props.userLoggedIn && <Dropdown overlay={menu}>
@@ -57,4 +62,4 @@ const mapDispatchToProps = dispatch => ({
   removeUser: () => dispatch(invoiceAction.removeUser())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppHeader));

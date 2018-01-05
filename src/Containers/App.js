@@ -15,10 +15,10 @@ class App  extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <AppHeader />
-        <Content style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <Content>
           <Router>
             <div>
+              <AppHeader />
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
             </div>

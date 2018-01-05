@@ -40,10 +40,12 @@ class Login extends React.Component {
     const AuthForm = Form.create()(LoginForm)
 
     return (
-      <div style={{ minWidth: 400 }}>
-        <AuthForm processDetail={(data, type) => this.processUserData(data, type)} />
-        <Divider className="divider">OR</Divider>
-        <SocialBlock processDetail={(data, type) => this.processUserData(data, type)} />
+      <div className="app-container">
+        <div style={{ minWidth: 400, display: 'inline-block' }}>
+          <AuthForm processDetail={(data, type) => this.processUserData(data, type)} />
+          <Divider className="divider">OR</Divider>
+          <SocialBlock processDetail={(data, type) => this.processUserData(data, type)} />
+        </div>
       </div>
     )
   }

@@ -27,6 +27,13 @@
   to { transform: rotate(360deg); }
 }
 
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 150px);
+}
+
 .login-form {
   max-width: 400px;
 }
@@ -94,6 +101,7 @@
   font-size: 20px;
   font-weight: 500;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .ant-divider-horizontal.ant-divider-with-text.divider {
