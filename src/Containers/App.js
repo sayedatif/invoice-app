@@ -6,7 +6,7 @@ import {
 import { Layout } from 'antd';
 import Home from './Home';
 import Login from './Login';
-import Register from './Register'
+import ForgotPassword from './ForgotPassword';
 import AppHeader from '../Components/AppHeader';
 import '../App.css';
 const { Content, Footer } = Layout;
@@ -22,7 +22,8 @@ class App  extends React.Component {
               <AppHeader />
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
+              <Route path="/register" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
             </div>
           </Router>
         </Content>
