@@ -23,12 +23,15 @@ class AppHeader extends React.Component{
       case 'signout':
         this.signoutUser();
         break;
+      case 'profile':
+        this.goToRoute('/profile');
+        break;
       default:
     }
   }
 
-  goToHome = () => {
-    this.props.history.push('/')
+  goToRoute = (route) => {
+    this.props.history.push(route);
   }
 
   render() {
@@ -42,7 +45,7 @@ class AppHeader extends React.Component{
 
     return (
       <Header className="header-style">
-        <div className="logo" onClick={this.goToHome}>
+        <div className="logo" onClick={() => this.goToRoute('/')}>
           <i>Invoice <Icon type="profile" /></i>
         </div>
         {this.props.user && this.props.userLoggedIn && <Dropdown overlay={menu}>

@@ -6,10 +6,12 @@ import {
 import { Layout } from 'antd';
 import Home from './Home';
 import Login from './Login';
+import Profile from './Profile';
 import ForgotPassword from './ForgotPassword';
 import AppHeader from '../Components/AppHeader';
+import AppFooter from '../Components/AppFooter';
 import '../App.css';
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 class App  extends React.Component {
 
@@ -24,12 +26,11 @@ class App  extends React.Component {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/profile" component={Profile} />
             </div>
           </Router>
         </Content>
-        <Footer style={{ textAlign: 'center', color: '#ff0066' }}>
-          Created by Sayed Atif 2017
-        </Footer>
+        <AppFooter />
       </Layout>
     )
   }

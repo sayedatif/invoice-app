@@ -145,3 +145,8 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.footer-style {
+   text-align: center;
+   color: var(--primary-color)
+}
